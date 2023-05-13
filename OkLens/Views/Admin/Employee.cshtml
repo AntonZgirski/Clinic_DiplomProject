@@ -50,11 +50,11 @@
                   <td>
                         @Html.DisplayFor(modelItem => item.Login)
                   </td>
-@*                  <td>
-                    @Html.ActionLink("Confirm", "ConfirmApp", new {id = item.EmployeeId})|
-                    @Html.ActionLink("Reject", "RejectApp", new {id = item.EmployeeId})  
+                  <td>
+                    <a asp-action="DetailsEmployee" asp-route-id="@item.EmployeeId">Просмотр</a> |
+                    <a asp-action="EditEmployee" asp-route-id="@item.EmployeeId">Изменить</a>
                   </td>
-*@              </tr>
+              </tr>
       } 
      </table>
      <p>

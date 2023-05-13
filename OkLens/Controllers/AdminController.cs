@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OkLens.Models;
 using OkLens.Services;
 
@@ -55,7 +56,53 @@ namespace OkLens.Controllers
       };
       _adminServices.SaveEmployee(emp);      
       return RedirectToAction("Employee");
-    }   
-    
+    }
+
+    public IActionResult DetailsEmployee(int id)
+    {
+      var emp = _adminServices.GetEmployee(id);
+      return View(emp);
+    }
+
+    public IActionResult EditEmployee(int id)
+    {
+      var edtvm = new EditEmployeeViewModel();
+      edtvm.Employee = _adminServices.GetEmployee(id);
+      edtvm.Roles = _adminServices.GetRoles();
+      return View(edtvm);
+    }
+
+    [HttpPost]
+    public IActionResult EditEmployee(int id,
+                                      [FromForm] string fname,
+                                      [FromForm] string sname,
+                                      [FromForm] string lname,
+                                      [FromForm] DateTime datebir,
+                                      [FromForm] int role,
+                                      [FromForm] string category,
+                                      [FromForm] string login)
+    {
+      if (_adminServices.CheckDublicateLoginEmployee(login))
+      {
+        var edtvm = new EditEmployeeViewModel();
+        edtvm.Employee = _adminServices.GetEmployee(id);
+        edtvm.Roles = _adminServices.GetRoles();
+        ViewBag.Error = ErrorMessage.ErrorDublicateLoginEmployee(login);
+        return View("EditEmployee", edtvm);
+      }
+      var emp = _adminServices.GetEmployee(id);
+      emp.Lname = lname;
+      emp.Sname = sname;
+      emp.Fname = fname;
+      emp.DateBirthday = datebir;
+      emp.RoleId = role;
+      emp.Category = category;
+      emp.Login = login;
+
+      _adminServices.SaveEditEmployee(emp);
+      return RedirectToAction("Employee");
+    }
+
+
   }
 }

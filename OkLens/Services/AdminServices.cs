@@ -31,5 +31,19 @@ namespace OkLens.Services
       if (employee == null) return false;
       else return true;
     }
+
+    public Employee GetEmployee(int id)
+    {
+      var user = _okLensContext.Employees.Where(p => p.EmployeeId == id).FirstOrDefault();
+      var role = _okLensContext.Roles.FirstOrDefault(p => p.RoleId == user.RoleId);
+      user.Role = role;
+      return user;
+    }
+
+    public void SaveEditEmployee(Employee emp)
+    {
+      _okLensContext.Update(emp);
+      _okLensContext.SaveChanges();
+    }
   }
 }
