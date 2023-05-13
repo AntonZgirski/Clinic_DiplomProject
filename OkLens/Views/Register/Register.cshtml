@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Вход пользователя";
+}
+
+
+@*<h1>@ViewData["Title"]</h1>
+<br>*@
+<form asp-controller="Register" asp-action="Authenfic" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Логин" name="login">
+                <label for="floatingInput">Логин</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" placeholder="Пароль" name="password">
+                <label for="floatingInput">Пароль</label>
+            </div>
+        </div>
+    </div>
+    @if (ViewBag.Error != null)
+    {
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+               @ViewBag.Error
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+<br /> <button type="submit" class="btn btn-outline-primary">Войти</button>
+
+</form>

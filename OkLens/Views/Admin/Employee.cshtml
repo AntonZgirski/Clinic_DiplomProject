@@ -1,0 +1,67 @@
+﻿@model List<ListEmployeeForView>
+@{
+  ViewData["Title"] = "Сотрудники"; 
+}
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">        
+            <div class="container-fluid">                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Employee">Сотрудники</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <p>
+            <h2 class="text-info">@ViewData["Title"]</h2>
+        </p>
+
+    <table class="table"> 
+        <tr>
+            <th>ФИО</th>
+            <th>Роль</th> 
+            <th>Дата рождения</th> 
+            <th>Категория</th> 
+            <th>Логин</th> 
+        </tr>
+      @foreach (var item in Model)
+      {
+              <tr>
+                  <td>
+                        @Html.DisplayFor(modelItem => item.Fio)
+                  </td>
+                  <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                  </td>
+                  <td>
+                        @Html.DisplayFor(modelItem => item.DateBirthdayStr)
+                  </td>
+                  <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                  </td>
+                  <td>
+                        @Html.DisplayFor(modelItem => item.Login)
+                  </td>
+@*                  <td>
+                    @Html.ActionLink("Confirm", "ConfirmApp", new {id = item.EmployeeId})|
+                    @Html.ActionLink("Reject", "RejectApp", new {id = item.EmployeeId})  
+                  </td>
+*@              </tr>
+      } 
+     </table>
+     <p>
+        <form asp-controller="Admin" asp-action="AddEmployee" method="get">
+        <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить сотрудника</button>
+        </form>
+     </p>
+    <br />
+    </header>
+</body>
