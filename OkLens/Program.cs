@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OkLens.Models;
 using OkLens.Services;
+using OkLens.ViewModel;
 
 namespace OkLens
 {
@@ -21,6 +22,7 @@ namespace OkLens
           options.UseSqlServer(connectionString));
       builder.Services.AddScoped<RegisterServices>();
       builder.Services.AddScoped<AdminServices>();
+      builder.Services.AddScoped<ManagerServices>();
 
       builder.Services.AddAuthorization(options =>
       {
@@ -44,12 +46,14 @@ namespace OkLens
 
       app.UseAuthorization();
 
+      // для релиза
       //app.MapControllerRoute(
       //    name: "default",
       //    pattern: "{controller=Register}/{action=Register}/{id?}");
+      // для тестирования
       app.MapControllerRoute(
           name: "default",
-          pattern: "{controller=Admin}/{action=Employee}/{id?}");
+          pattern: "{controller=Manager}/{action=RoomList}/{id?}");
 
 
       app.Run();

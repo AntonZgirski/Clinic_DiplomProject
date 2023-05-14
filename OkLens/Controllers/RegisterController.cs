@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using OkLens.Models;
 using OkLens.Services;
+using OkLens.ViewModel;
 
 namespace OkLens.Controllers
 {
-  public class RegisterController : Controller
+    public class RegisterController : Controller
   {
     private readonly ILogger<RegisterController> _logger;
     private readonly RegisterServices _registerServices;       

@@ -1,13 +1,11 @@
 ﻿@model OkLens.Models.Employee
 
 @{
-    ViewData["Title"] = "Подрабности";
+    ViewData["Title"] = "Удалить сотрудника";
 }
 
-<h1  class="text-info">Подробности</h1>
-
+<h1  class="text-info">Вы уверены что хотите удалить данного сотрудника?</h1>
 <div>
-    <h4  class="text-info">Сотрудник</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -54,7 +52,24 @@
         </dd>
     </dl>
 </div>
-<div>
-    @*<a asp-action="Edit" asp-route-id="@Model?.EmployeeId">Edit</a> |*@
-    <a asp-action="Employee" class="btn btn-outline-primary">Назад</a>
+<br/>
+<div class="col-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <div class="form-group">
+@*                   <form asp-action="DeleteEmp">        
+                        <input type="hidden" asp-for="@Model.EmployeeId" />
+                        <input asp-route-id="@Model.EmployeeId" type="submit" value="Удалить" class="btn btn-outline-primary" formmethod="post"/>    
+                    </form>
+*@                  <a asp-action="DeleteEmp" asp-route-id="@Model.EmployeeId" class="btn btn-outline-primary">Удалить</a>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="form-group">   
+                    <a asp-action="Employee" class="btn btn-outline-primary">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

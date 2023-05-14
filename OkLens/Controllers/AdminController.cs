@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using OkLens.Models;
 using OkLens.Services;
+using OkLens.ViewModel;
 
 namespace OkLens.Controllers
 {
-  public class AdminController : Controller
+    public class AdminController : Controller
   {
     private readonly ILogger<AdminController> _logger;
     private readonly AdminServices _adminServices;
@@ -16,6 +18,7 @@ namespace OkLens.Controllers
       _adminServices = adminServices;
     }
 
+    #region Employee
     [HttpGet]
     public IActionResult Employee()
     {
@@ -54,7 +57,7 @@ namespace OkLens.Controllers
         Login = login,
         FirstEntry = true
       };
-      _adminServices.SaveEmployee(emp);      
+      _adminServices.AddEmployee(emp);      
       return RedirectToAction("Employee");
     }
 
@@ -82,15 +85,12 @@ namespace OkLens.Controllers
                                       [FromForm] string category,
                                       [FromForm] string login)
     {
-      if (_adminServices.CheckDublicateLoginEmployee(login))
-      {
-        var edtvm = new EditEmployeeViewModel();
-        edtvm.Employee = _adminServices.GetEmployee(id);
-        edtvm.Roles = _adminServices.GetRoles();
-        ViewBag.Error = ErrorMessage.ErrorDublicateLoginEmployee(login);
-        return View("EditEmployee", edtvm);
-      }
       var emp = _adminServices.GetEmployee(id);
+      if (emp.Login != login && _adminServices.CheckDublicateLoginEmployee(login))
+      {        
+        ViewBag.Error = ErrorMessage.ErrorDublicateLoginEmployee(login);
+        return View("EditEmployee", _adminServices.GetEditEmployeeViewModel(id));
+      }      
       emp.Lname = lname;
       emp.Sname = sname;
       emp.Fname = fname;
@@ -99,10 +99,34 @@ namespace OkLens.Controllers
       emp.Category = category;
       emp.Login = login;
 
-      _adminServices.SaveEditEmployee(emp);
+      _adminServices.UpdateEmployee(emp);
       return RedirectToAction("Employee");
     }
 
-
+    [HttpPost]
+    public IActionResult ReserPasswrodEmployee(int id)
+    {
+      var emp = _adminServices.GetEmployee(id);
+      emp.Password = null;
+      emp.FirstEntry = true;
+      _adminServices.UpdateEmployee(emp);
+      ViewBag.Error = ErrorMessage.SuccesReserPassword;
+      return View("EditEmployee", _adminServices.GetEditEmployeeViewModel(id));
+    }
+    
+    public IActionResult DeleteEmployee(int id)
+    {
+      var emp = _adminServices.GetEmployee(id);
+      return View(emp);
+    }
+    
+    public IActionResult DeleteEmp(int id)
+    {
+      var emp = _adminServices.GetEmployee(id);
+      _adminServices.DeleteEmployee(emp);
+      ViewBag.Error = ErrorMessage.SuccesDeleteEmployee($"{emp.Lname} {emp.Fname.Substring(0,1)}. {emp.Sname.Substring(0,1)}");
+      return View("Employee", _adminServices.GetEmployees());
+    }
+    #endregion Employees
   }
 }

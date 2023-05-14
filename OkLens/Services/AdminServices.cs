@@ -1,14 +1,17 @@
 ﻿using OkLens.Models;
+using OkLens.ViewModel;
 
 namespace OkLens.Services
 {
-  public class AdminServices
+    public class AdminServices
   {
     private readonly OkLensContext _okLensContext;
     public AdminServices(OkLensContext okLensContext)
     {
       _okLensContext = okLensContext;
     }
+
+    #region Employee  
     public List<ListEmployeeForView> GetEmployees()
     {
       return _okLensContext.ListEmployeeForViews.ToList();
@@ -19,7 +22,7 @@ namespace OkLens.Services
       return _okLensContext.Roles.ToList();
     }
 
-    public void SaveEmployee(object emp)
+    public void AddEmployee(object emp)
     {
       _okLensContext.Add(emp);
       _okLensContext.SaveChanges();
@@ -40,10 +43,28 @@ namespace OkLens.Services
       return user;
     }
 
-    public void SaveEditEmployee(Employee emp)
+    public void UpdateEmployee(Employee emp)
     {
       _okLensContext.Update(emp);
       _okLensContext.SaveChanges();
     }
+
+    public EditEmployeeViewModel GetEditEmployeeViewModel(int id)
+    {
+      var edtvm = new EditEmployeeViewModel();
+      var user = _okLensContext.Employees.Where(p => p.EmployeeId == id).FirstOrDefault();
+      var role = _okLensContext.Roles.FirstOrDefault(p => p.RoleId == user.RoleId);
+      user.Role = role;
+      edtvm.Employee = user;
+      edtvm.Roles = _okLensContext.Roles.ToList();
+      return edtvm;
+    }
+
+    public void DeleteEmployee(Employee emp)
+    {
+      _okLensContext.Remove(emp);
+      _okLensContext.SaveChanges();
+    }
+    #endregion Employee
   }
 }

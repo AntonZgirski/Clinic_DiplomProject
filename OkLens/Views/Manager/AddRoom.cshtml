@@ -1,0 +1,49 @@
+﻿@model OkLens.Models.Room
+@{
+  ViewData["Title"] = "Новый кабинет";
+}
+<body>
+    <header>
+        <p>
+            <h2 class="text-info">@ViewData["Title"]</h2>
+        </p>        
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="AddRoom">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        @*<label asp-for="Adress" class="control-label"></label>*@
+                        <input asp-for="Adress" class="form-control" placeholder="Адрес"/>
+                        <span asp-validation-for="Adress" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @*<label asp-for="PhoneNumber" class="control-label"></label>*@
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Номер телефона"/>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @*<label asp-for="CountWorkPlace" class="control-label"></label>*@
+                        <input asp-for="CountWorkPlace" class="form-control" placeholder="Количество рабочих мест"/>
+                        <span asp-validation-for="CountWorkPlace" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Добавить" class="btn btn-outline-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+        <div>
+        <a asp-action="RoomList" class="btn btn-outline-primary">Назад</a>
+        </div>
+
+    </header>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

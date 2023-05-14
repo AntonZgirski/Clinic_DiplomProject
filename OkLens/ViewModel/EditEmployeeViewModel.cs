@@ -1,4 +1,6 @@
-﻿namespace OkLens.Models
+﻿using OkLens.Models;
+
+namespace OkLens.ViewModel
 {
     public class EditEmployeeViewModel
     {

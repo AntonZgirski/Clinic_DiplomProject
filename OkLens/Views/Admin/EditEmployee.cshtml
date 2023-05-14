@@ -1,4 +1,4 @@
-﻿@*using MultipleModelInOneView*@
+﻿@using OkLens.ViewModel
 @model EditEmployeeViewModel
 
 @{
@@ -9,6 +9,7 @@
 
 <h4  class="text-info">Сотрудник</h4>
 <hr />
+
 
 <div class="row">
     <div class="col-md-4">
@@ -53,7 +54,7 @@
             @if (ViewBag.Error != null)
             {
             <div class="row">
-                <div class="col-12">
+                <div class="col-8">
                 <div class="alert alert-warning" role="alert">
                     @ViewBag.Error
                 </div>
@@ -61,13 +62,26 @@
             </div>
             }  
             <br/>
-            <div class="form-group">
-                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <input type="submit" value="Сохранить" class="btn btn-outline-primary" />
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">   
+                                <input asp-action="ReserPasswrodEmployee" asp-route-id="@Model.Employee.EmployeeId" type="submit" value="Сбросить пароль" class="btn btn-outline-primary" formmethod="post"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
 <br/>
 <div>
-    <a asp-action="Employee">Назад</a>
+    <a asp-action="Employee" class="btn btn-outline-primary">Назад</a>
 </div>
