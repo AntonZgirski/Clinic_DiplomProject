@@ -1,0 +1,42 @@
+﻿@model OkLens.Models.Room
+<h1  class="text-info">Вы уверены что хотите удалить данный кабинет?</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CountWorkPlace)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CountWorkPlace)
+        </dd>
+    </dl>
+</div>
+<br/>
+<div class="col-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <div class="form-group">
+                    <a asp-action="DeleteAct" asp-route-id="@Model.RoomId" class="btn btn-outline-primary">Удалить</a>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="form-group">   
+                    <a asp-action="RoomList" class="btn btn-outline-primary">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

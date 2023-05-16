@@ -1,6 +1,6 @@
-﻿@model List<Room>
+﻿@model List<HowKnow>
 @{
-  ViewData["Title"] = "Кабинеты"; 
+  ViewData["Title"] = "Как о нас узнали?"; 
 }
 
 <body>
@@ -35,26 +35,17 @@
 
     <table class="table"> 
         <tr>
-            <th>Адресс</th>
-            <th>Номер телефона</th>
-            <th>Количество рабочих мест</th>
+            <th>Описание</th>
         </tr>
       @foreach (var item in Model)
       {
               <tr>
                   <td>
-                        @Html.DisplayFor(modelItem => item.Adress)
+                        @Html.DisplayFor(modelItem => item.Descr)
                   </td>
                   <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.CountWorkPlace)
-                  </td>
-                  <td>
-                    <a asp-action="DetailsRoom" asp-route-id="@item.RoomId">Просмотр</a> |
-                    <a asp-action="EditRoom" asp-route-id="@item.RoomId">Изменить</a> |
-                    <a asp-action="DeleteRoom" asp-route-id="@item.RoomId">Удалить</a>
+                    <a asp-action="EditHowKnow" asp-route-id="@item.HowKnowId">Изменить</a> |
+                    <a asp-action="DeleteHowKNow" asp-route-id="@item.HowKnowId">Удалить</a>
                   </td>
               </tr>
       } 
@@ -72,8 +63,8 @@
     }
     <br />
     <p>
-        <form asp-controller="Manager" asp-action="AddRoom" method="get">
-            <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить кабинет</button>
+        <form asp-controller="Manager" asp-action="AddHowKnow" method="get">
+            <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить</button>
         </form>
     </p>
     <br />

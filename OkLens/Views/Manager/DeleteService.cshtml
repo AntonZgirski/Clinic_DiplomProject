@@ -1,0 +1,36 @@
+﻿@model OkLens.Models.Service
+<h1  class="text-info">Вы уверены что хотите удалить данную запись?</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<br/>
+<div class="col-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <div class="form-group">
+                    <a asp-action="DeleteServiceAction" asp-route-id="@Model.ServicesId" class="btn btn-outline-primary">Удалить</a>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="form-group">   
+                    <a asp-action="ServiceList" class="btn btn-outline-primary">Назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ using OkLens.ViewModel;
 
 namespace OkLens.Controllers
 {
-    public class AdminController : Controller
+  public class AdminController : Controller
   {
     private readonly ILogger<AdminController> _logger;
     private readonly AdminServices _adminServices;
@@ -19,6 +19,7 @@ namespace OkLens.Controllers
     }
 
     #region Employee
+
     [HttpGet]
     public IActionResult Employee()
     {
@@ -69,10 +70,7 @@ namespace OkLens.Controllers
 
     public IActionResult EditEmployee(int id)
     {
-      var edtvm = new EditEmployeeViewModel();
-      edtvm.Employee = _adminServices.GetEmployee(id);
-      edtvm.Roles = _adminServices.GetRoles();
-      return View(edtvm);
+      return View(_adminServices.GetEditEmployeeViewModel(id));
     }
 
     [HttpPost]
@@ -128,5 +126,7 @@ namespace OkLens.Controllers
       return View("Employee", _adminServices.GetEmployees());
     }
     #endregion Employees
+
+
   }
 }

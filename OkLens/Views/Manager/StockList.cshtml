@@ -1,6 +1,6 @@
-﻿@model List<Room>
+﻿@model List<Stock>
 @{
-  ViewData["Title"] = "Кабинеты"; 
+  ViewData["Title"] = "Склад"; 
 }
 
 <body>
@@ -35,26 +35,29 @@
 
     <table class="table"> 
         <tr>
-            <th>Адресс</th>
-            <th>Номер телефона</th>
-            <th>Количество рабочих мест</th>
+            <th>Наименование</th>
+            <th>Описание</th>
+            <th>Количество</th>
+            <th>Стоимость</th>
         </tr>
       @foreach (var item in Model)
       {
               <tr>
                   <td>
-                        @Html.DisplayFor(modelItem => item.Adress)
+                        @Html.DisplayFor(modelItem => item.Name)
                   </td>
                   <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        @Html.DisplayFor(modelItem => item.Descr)
                   </td>
                   <td>
-                        @Html.DisplayFor(modelItem => item.CountWorkPlace)
+                        @Html.DisplayFor(modelItem => item.Count)
                   </td>
                   <td>
-                    <a asp-action="DetailsRoom" asp-route-id="@item.RoomId">Просмотр</a> |
-                    <a asp-action="EditRoom" asp-route-id="@item.RoomId">Изменить</a> |
-                    <a asp-action="DeleteRoom" asp-route-id="@item.RoomId">Удалить</a>
+                        @Html.DisplayFor(modelItem => item.Price)
+                  </td>
+                  <td>
+                    <a asp-action="EditStock" asp-route-id="@item.StockId">Изменить</a> |
+                    <a asp-action="DeleteStock" asp-route-id="@item.StockId">Удалить</a>
                   </td>
               </tr>
       } 
@@ -72,8 +75,8 @@
     }
     <br />
     <p>
-        <form asp-controller="Manager" asp-action="AddRoom" method="get">
-            <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить кабинет</button>
+        <form asp-controller="Manager" asp-action="AddStock" method="get">
+            <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить</button>
         </form>
     </p>
     <br />

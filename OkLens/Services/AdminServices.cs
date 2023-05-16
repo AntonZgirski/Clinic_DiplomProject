@@ -65,6 +65,7 @@ namespace OkLens.Services
       _okLensContext.Remove(emp);
       _okLensContext.SaveChanges();
     }
+    
     #endregion Employee
   }
 }

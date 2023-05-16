@@ -1,6 +1,6 @@
-﻿@model List<Room>
+﻿@model List<Service>
 @{
-  ViewData["Title"] = "Кабинеты"; 
+  ViewData["Title"] = "Услуги"; 
 }
 
 <body>
@@ -35,26 +35,21 @@
 
     <table class="table"> 
         <tr>
-            <th>Адресс</th>
-            <th>Номер телефона</th>
-            <th>Количество рабочих мест</th>
+            <th>Наименование</th>
+            <th>Стоимость</th>
         </tr>
       @foreach (var item in Model)
       {
               <tr>
                   <td>
-                        @Html.DisplayFor(modelItem => item.Adress)
+                        @Html.DisplayFor(modelItem => item.Name)
                   </td>
                   <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        @Html.DisplayFor(modelItem => item.Price)
                   </td>
                   <td>
-                        @Html.DisplayFor(modelItem => item.CountWorkPlace)
-                  </td>
-                  <td>
-                    <a asp-action="DetailsRoom" asp-route-id="@item.RoomId">Просмотр</a> |
-                    <a asp-action="EditRoom" asp-route-id="@item.RoomId">Изменить</a> |
-                    <a asp-action="DeleteRoom" asp-route-id="@item.RoomId">Удалить</a>
+                    <a asp-action="EditService" asp-route-id="@item.ServicesId">Изменить</a> |
+                    <a asp-action="DeleteService" asp-route-id="@item.ServicesId">Удалить</a>
                   </td>
               </tr>
       } 
@@ -72,8 +67,8 @@
     }
     <br />
     <p>
-        <form asp-controller="Manager" asp-action="AddRoom" method="get">
-            <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить кабинет</button>
+        <form asp-controller="Manager" asp-action="AddService" method="get">
+            <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить</button>
         </form>
     </p>
     <br />
