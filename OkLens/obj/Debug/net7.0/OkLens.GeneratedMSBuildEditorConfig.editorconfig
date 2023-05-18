@@ -40,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxBZGRIb3dLbm93LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/C\#/Diplom/OkLens/OkLens/Views/Manager/AddPatient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxBZGRQYXRpZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/Diplom/OkLens/OkLens/Views/Manager/AddPatientWithGuar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxBZGRQYXRpZW50V2l0aEd1YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/C\#/Diplom/OkLens/OkLens/Views/Manager/AddRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxBZGRSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,6 +98,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/C\#/Diplom/OkLens/OkLens/Views/Manager/HowKnowList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxIb3dLbm93TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/Diplom/OkLens/OkLens/Views/Manager/PatientList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxQYXRpZW50TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/C\#/Diplom/OkLens/OkLens/Views/Manager/RoomList.cshtml]

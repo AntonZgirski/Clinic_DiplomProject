@@ -3,7 +3,7 @@ using OkLens.ViewModel;
 
 namespace OkLens.Services
 {
-    public class AdminServices
+  public class AdminServices
   {
     private readonly OkLensContext _okLensContext;
     public AdminServices(OkLensContext okLensContext)

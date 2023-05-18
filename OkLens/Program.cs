@@ -53,7 +53,7 @@ namespace OkLens
       // для тестирования
       app.MapControllerRoute(
           name: "default",
-          pattern: "{controller=Manager}/{action=RoomList}/{id?}");
+          pattern: "{controller=Manager}/{action=PatientList}/{id?}");
 
 
       app.Run();

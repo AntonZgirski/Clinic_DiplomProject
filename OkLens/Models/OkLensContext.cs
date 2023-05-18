@@ -27,6 +27,8 @@ public partial class OkLensContext : DbContext
 
     public virtual DbSet<Patient> Patients { get; set; }
 
+    public virtual DbSet<PatientForView> PatientForViews { get; set; }
+
     public virtual DbSet<Reception> Receptions { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -171,8 +173,91 @@ public partial class OkLensContext : DbContext
 
             entity.HasOne(d => d.HowKnow).WithMany(p => p.Patients)
                 .HasForeignKey(d => d.HowKnowId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Patient_HowKnow");
+        });
+
+        modelBuilder.Entity<PatientForView>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("PatientForView");
+
+            entity.Property(e => e.DateBirthday).HasColumnType("date");
+            entity.Property(e => e.DateBirthdayGuar).HasColumnType("date");
+            entity.Property(e => e.Fio)
+                .HasMaxLength(56)
+                .IsUnicode(false)
+                .HasColumnName("FIO");
+            entity.Property(e => e.Fioguarmatir)
+                .HasMaxLength(56)
+                .IsUnicode(false)
+                .HasColumnName("FIOGuarmatir");
+            entity.Property(e => e.Fname)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("FName");
+            entity.Property(e => e.FnameGuar)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("FNameGuar");
+            entity.Property(e => e.Gender)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.GenderGuar)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.GuarnatirPatientId).HasColumnName("GuarnatirPatientID");
+            entity.Property(e => e.HowKnowDescr)
+                .HasMaxLength(30)
+                .IsUnicode(false);
+            entity.Property(e => e.HowKnowId).HasColumnName("HowKnowID");
+            entity.Property(e => e.Lname)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("LName");
+            entity.Property(e => e.LnameGuar)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("LNameGuar");
+            entity.Property(e => e.NumberDocument)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.NumberDocumentGuar)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.PatientId).HasColumnName("PatientID");
+            entity.Property(e => e.PhoneNumber)
+                .HasMaxLength(13)
+                .IsUnicode(false);
+            entity.Property(e => e.PhoneNumberGuar)
+                .HasMaxLength(13)
+                .IsUnicode(false);
+            entity.Property(e => e.RegAdress)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.RegAdressGuar)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.Sname)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("SName");
+            entity.Property(e => e.SnameGuar)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("SNameGuar");
+            entity.Property(e => e.TypeDocument)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.TypeDocumentGuar)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.WorkPlace)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.WorkPlaceGuar)
+                .HasMaxLength(100)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Reception>(entity =>

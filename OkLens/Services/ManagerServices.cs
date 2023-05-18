@@ -83,5 +83,14 @@ namespace OkLens.Services
 
     #endregion Stock
 
+    #region Patient
+
+    public List<PatientForView> GetPatientViewList()
+    {
+      return _okLensContext.PatientForViews.ToList();
+    }
+
+    #endregion Patient
+
   }
 }

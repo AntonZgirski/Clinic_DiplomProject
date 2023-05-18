@@ -1,37 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OkLens.Models;
 
 public partial class Patient
 {
-    public int PatientId { get; set; }
+  public int PatientId { get; set; }
 
-    public int? GuarnatirPatientId { get; set; }
+  public int? GuarnatirPatientId { get; set; }
 
-    public string Fname { get; set; } = null!;
+  [Display(Name = "Имя")]
+  [Required(ErrorMessage = "Поле не может быть пустым!")]
+  [StringLength(50)]
+  public string Fname { get; set; } = null!;
 
-    public string Sname { get; set; } = null!;
+  [Display(Name = "Отчество")]
+  [Required(ErrorMessage = "Поле не может быть пустым!")]
+  [StringLength(50)]
+  public string Sname { get; set; } = null!;
 
-    public string Lname { get; set; } = null!;
+  [Display(Name = "Фамилия")]
+  [Required(ErrorMessage = "Поле не может быть пустым!")]
+  [StringLength(50)]
+  public string Lname { get; set; } = null!;
 
-    public DateTime DateBirthday { get; set; }
+  [Display(Name = "Дата рождения")]
+  [Required(ErrorMessage = "Поле не может быть пустым!")]  
+  public DateTime DateBirthday { get; set; }
+  public string DateBirthdayStr => DateBirthday.ToShortDateString();
 
-    public string RegAdress { get; set; } = null!;
+  [Display(Name = "Адрес регистрации")]
+  [StringLength(200)]
+  public string? RegAdress { get; set; }
 
-    public string TypeDocument { get; set; } = null!;
+  [Display(Name = "Тип документа")]
+  [Required(ErrorMessage = "Поле не может быть пустым!")]
+  [StringLength(50)]
+  public string TypeDocument { get; set; } = null!;
 
-    public string NumberDocument { get; set; } = null!;
+  [Display(Name = "Номер документа")]
+  [StringLength(50)]
+  public string? NumberDocument { get; set; }
 
-    public string Gender { get; set; } = null!;
+  [Display(Name = "Пол")]
+  [Required(ErrorMessage = "Поле не может быть пустым!")]
+  public string Gender { get; set; } = null!;
 
-    public string? WorkPlace { get; set; }
+  [Display(Name = "Место работы")]
+  [StringLength(100)]
+  public string? WorkPlace { get; set; }
 
-    public string PhoneNumber { get; set; } = null!;
+  [Display(Name = "Номер телефона")]
+  [Required(ErrorMessage = "Поле не может быть пустым!")]
+  [Phone(ErrorMessage = "Не верный формат!")]
+  public string PhoneNumber { get; set; } = null!;
 
-    public int HowKnowId { get; set; }
+  public int? HowKnowId { get; set; }
 
-    public virtual HowKnow HowKnow { get; set; } = null!;
+  public virtual HowKnow? HowKnow { get; set; }
 
-    public virtual ICollection<Reception> Receptions { get; set; } = new List<Reception>();
+  public virtual ICollection<Reception> Receptions { get; set; } = new List<Reception>();
 }

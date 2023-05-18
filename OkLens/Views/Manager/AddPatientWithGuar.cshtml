@@ -1,0 +1,166 @@
+﻿@model OkLens.Models.PatientForView
+
+@{
+  ViewData["Title"] = "Пациент с поручителем";
+  IEnumerable<HowKnow> howKnows = ViewData["HowKnowList"] as IEnumerable<HowKnow>;
+}
+
+<body>
+    <header>
+        <p>
+            <h2 class="text-info">@ViewData["Title"]</h2>
+        </p>        
+        <br/>
+        <form asp-action="AddPatientWithGuar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <h2 class="text-info">Поручитель</h2>
+                            <div class="form-group">
+                                <input asp-for="LnameGuar" class="form-control" placeholder="Фамилия"/>
+                                <span asp-validation-for="LnameGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="FnameGuar" class="form-control" placeholder="Имя"/>
+                                <span asp-validation-for="FnameGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="SnameGuar" class="form-control" placeholder="Отчетсво"/>
+                                <span asp-validation-for="SnameGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="DateBirthdayGuar" type="date" class="form-control"/>
+                                <span asp-validation-for="DateBirthdayGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="RegAdressGuar" class="form-control" placeholder="Адрес регистрации"/>
+                                <span asp-validation-for="RegAdressGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="TypeDocumentGuar" class="form-control" placeholder="Тип документа"/>
+                                <span asp-validation-for="TypeDocumentGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="NumberDocumentGuar" class="form-control" placeholder="Номер документа"/>
+                                <span asp-validation-for="NumberDocumentGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="GenderGuar" class="form-control" placeholder="Пол"/>
+                                <span asp-validation-for="GenderGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="WorkPlaceGuar" class="form-control" placeholder="Место работы"/>
+                                <span asp-validation-for="WorkPlaceGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="PhoneNumberGuar" class="form-control" placeholder="Номер телефона"/>
+                                <span asp-validation-for="PhoneNumberGuar" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label>Откуда о нас узнали</label>  
+                                <select  class="form-control"  id="howknow" name="howknow">
+                                    <option value="">...</option>
+                                @foreach(var m in howKnows)
+                                {
+                                    <option value=@m.HowKnowId asp-for="HowKnow.HowKnowId">@m.Descr</option>                  
+                                }
+                                </select>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-2">
+                        </div>
+                        <div class="col-4">
+                            <h2 class="text-info">Пациент</h2>
+                            <div class="form-group">
+                                <input asp-for="Lname" class="form-control" placeholder="Фамилия"/>
+                                <span asp-validation-for="Lname" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="Fname" class="form-control" placeholder="Имя"/>
+                                <span asp-validation-for="Fname" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="Sname" class="form-control" placeholder="Отчетсво"/>
+                                <span asp-validation-for="Sname" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="DateBirthday" type="date" class="form-control"/>
+                                <span asp-validation-for="DateBirthday" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="RegAdress" class="form-control" placeholder="Адрес регистрации"/>
+                                <span asp-validation-for="RegAdress" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="TypeDocument" class="form-control" placeholder="Тип документа"/>
+                                <span asp-validation-for="TypeDocument" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="NumberDocument" class="form-control" placeholder="Номер документа"/>
+                                <span asp-validation-for="NumberDocument" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="Gender" class="form-control" placeholder="Пол"/>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="WorkPlace" class="form-control" placeholder="Место работы"/>
+                                <span asp-validation-for="WorkPlace" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input asp-for="PhoneNumber" class="form-control" placeholder="Номер телефона"/>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Добавить" class="btn btn-outline-primary" />
+                    </div>
+                    <br />
+                    <div>
+                        <a asp-action="PatientList" class="btn btn-outline-primary">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br />
+    </header>
+</body>
+
+@section Scripts {
+    <script>
+    // переопределение валидации на стороне клиента
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+ 
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+    </script>
+}

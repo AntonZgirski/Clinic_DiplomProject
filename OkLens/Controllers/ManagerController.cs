@@ -5,6 +5,7 @@ using OkLens.Models;
 using OkLens.Services;
 using OkLens.ViewModel;
 using System;
+using System.Dynamic;
 
 namespace OkLens.Controllers
 {
@@ -247,5 +248,97 @@ namespace OkLens.Controllers
 
     #endregion Stock
 
+    #region Patient
+
+    [HttpGet]
+    public IActionResult PatientList()
+    {
+      return View(_managerServices.GetPatientViewList());
+    }
+
+    [HttpGet]
+    public IActionResult AddPatient()
+    {
+      ViewData["HowKnowList"] = _managerServices.GetHowKnowList();
+      return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult AddPatient([Bind("Lname, Fname, Sname, DateBirthday, RegAdress, TypeDocument, NumberDocument, Gender, WorkPlace, PhoneNumber")] Patient patient,
+                                    [FromForm] int howknow)
+    {
+      if (ModelState.IsValid)
+      {
+        if (howknow != 0) patient.HowKnowId = howknow;
+        _managerServices.AddObj(patient);
+        return RedirectToAction("PatientList");
+      }
+      return View(patient);
+    }
+
+    [HttpGet]
+    public IActionResult AddPatientWithGuar()
+    {
+      ViewData["HowKnowList"] = _managerServices.GetHowKnowList();
+      return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult AddPatientWithGuar([Bind("Lname, Fname, Sname, DateBirthday, RegAdress, TypeDocument, NumberDocument, Gender, WorkPlace, PhoneNumber," +
+                                            " LnameGuar, FnameGuar, SnameGuar, DateBirthdayGuar, RegAdressGuar, TypeDocumentGuar, NumberDocumentGuar," +
+                                            " GenderGuar, WorkPlaceGuar, PhoneNumberGuar")] PatientForView patient,
+                                            [FromForm] int howknow)
+    {
+      if (ModelState.IsValid)
+      {
+        var patientGuar = new Patient()
+        {
+          Lname = patient.LnameGuar,
+          Fname = patient.FnameGuar,
+          Sname = patient.SnameGuar,
+          RegAdress = patient.RegAdressGuar,
+          TypeDocument = patient.TypeDocumentGuar,
+          NumberDocument = patient.NumberDocumentGuar,
+          Gender = patient.GenderGuar,
+          WorkPlace = patient.WorkPlaceGuar,
+          PhoneNumber = patient.PhoneNumberGuar
+        };
+
+        if (patient.DateBirthdayGuar != null) patientGuar.DateBirthday = (DateTime)patient.DateBirthdayGuar;
+        else patientGuar.DateBirthday = DateTime.MinValue;
+
+        if (howknow != 0) patientGuar.HowKnowId = howknow;
+
+        _managerServices.AddObj(patientGuar);
+
+        var patientMain = new Patient()
+        {
+          GuarnatirPatientId = patientGuar.PatientId,
+          Lname = patient.Lname,
+          Fname = patient.Fname,
+          Sname = patient.Sname,
+          RegAdress = patient.RegAdress,
+          TypeDocument = patient.TypeDocument,
+          NumberDocument = patient.NumberDocument,
+          Gender = patient.Gender,
+          WorkPlace = patient.WorkPlace,
+          PhoneNumber = patient.PhoneNumber
+        };
+
+        if (patient.DateBirthdayGuar != null) patientMain.DateBirthday = (DateTime)patient.DateBirthday;
+        else patientMain.DateBirthday = DateTime.MinValue;
+        
+        if (howknow != 0) patientMain.HowKnowId = howknow;
+        
+        _managerServices.AddObj(patientMain);
+        
+        return RedirectToAction("PatientList");
+      }
+      return View(patient);
+    }
+
+    #endregion Patient
   }
 }
