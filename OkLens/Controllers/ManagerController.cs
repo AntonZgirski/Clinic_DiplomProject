@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting.StaticWebAssets;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using OkLens.Models;
 using OkLens.Services;
@@ -339,6 +341,89 @@ namespace OkLens.Controllers
       return View(patient);
     }
 
+    public IActionResult DetailsPatient(int id)
+    {
+      return View(_managerServices.GetPatientWithGuar(id));
+    }
+
+    public IActionResult EditPatient(int id)
+    {
+      return View(_managerServices.GetPatient(id));
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult EditPatient([Bind("PatientId, Lname, Fname, Sname, DateBirthday, RegAdress, TypeDocument" +
+                                          ", NumberDocument, Gender, WorkPlace, PhoneNumber")] Patient patient)
+    {
+      if (ModelState.IsValid)
+      {
+        _managerServices.UpdateObj(patient);
+        return RedirectToAction("PatientList");
+      }
+      return View(patient);
+    }
+
+    public IActionResult DeletePatient(int id)
+    {
+      return View(_managerServices.GetPatientWithGuar(id));
+    }
+
+    public IActionResult DeletePatientAction(int id)
+    {
+      var patient = _managerServices.GetPatient(id);
+      
+      // если у пациента нет поручителя, проверяем является ли он сам поручителем и удаляем его и пациента у которого он является поручителем
+      if (patient.GuarnatirPatientId == null)
+      {
+        var patients = _managerServices.GetPatients();
+        var patientMain = patients.Where(p => p.GuarnatirPatientId == id).FirstOrDefault();
+        if (patientMain != null) _managerServices.DeleteObj(patientMain);
+      }
+
+      _managerServices.DeleteObj(patient);
+      return RedirectToAction("PatientList");
+    }
+
     #endregion Patient
+
+    #region Reception
+    [HttpGet]
+    public IActionResult ReceptionCalendar()
+    {
+      return View(_managerServices.GetReceptionsView());
+    }
+
+    [HttpGet]
+    public IActionResult AddReception()
+    {
+      ViewData["Patient"] = _managerServices.GetPatientForReception();
+      ViewData["Employee"] = _managerServices.GetDoctor();
+      ViewData["Room"] = _managerServices.GetRoom();
+      ViewData["Services"] = _managerServices.GetServiceList();
+      return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult AddReception([Bind("PatientId,DateStart,DateEnd, Descr")] Reception reception,
+                                        [FromForm] int patient,
+                                        [FromForm] int employee,
+                                        [FromForm] int room,
+                                        [FromForm] int service)
+    {
+      if (ModelState.IsValid)
+      {
+        reception.PatientId = patient;
+        reception.EmployeeId = employee;
+        reception.RoomId = room;
+        reception.ServicesId = service;
+        _managerServices.AddObj(reception);
+        return RedirectToAction("ReceptionCalendar");
+      }
+      return View();
+    }
+
+    #endregion Reception
   }
 }

@@ -61,6 +61,7 @@ public partial class PatientForView
 
   public string? Fio { get; set; }
 
+  [Display(Name = "Откуда о нас узнали?")]
   public string? HowKnowDescr { get; set; }
 
   [Display(Name = "Имя")]
@@ -81,6 +82,7 @@ public partial class PatientForView
   [Display(Name = "Дата рождения")]
   //[Required(ErrorMessage = "Поле не может быть пустым!")]
   public DateTime? DateBirthdayGuar { get; set; }
+  public string DateBirthdayGuarStr;
 
   [Display(Name = "Адрес регистрации")]
   [StringLength(200)]

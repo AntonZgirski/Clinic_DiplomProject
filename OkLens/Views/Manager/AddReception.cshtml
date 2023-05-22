@@ -1,0 +1,149 @@
+﻿@model OkLens.Models.Reception
+
+@{
+  ViewData["Title"] = "Запись на прием";
+  IEnumerable<PatientForView> patient = ViewData["Patient"] as IEnumerable<PatientForView>;
+  IEnumerable<ListEmployeeForView> employee = ViewData["Employee"] as IEnumerable<ListEmployeeForView>;
+  IEnumerable<Room> room = ViewData["Room"] as IEnumerable<Room>;
+  IEnumerable<Service> service = ViewData["Services"] as IEnumerable<Service>; 
+}
+
+<body>
+    <header>
+        <p>
+            <h2 class="text-info">@ViewData["Title"]</h2>
+        </p>        
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="AddReception">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label>ФИО пациента</label>  
+                        <select  asp-for="PatientId" class="form-control"  id="patient" name="patient">                          
+                            <option  value="">...</option>
+                        @foreach(var m in patient)
+                        {
+                            <option value=@m.PatientId asp-for="">@m.Fio</option>                  
+                        }
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>ФИО доктора</label>  
+                        <select  class="form-control"  id="employee" name="employee">
+                            <option value="">...</option>
+                        @foreach(var m in employee)
+                        {
+                            <option value=@m.EmployeeId asp-for="">@m.Fio</option>                  
+                        }
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>Кабинет</label>  
+                        <select  class="form-control"  id="room" name="room">
+                            <option value="">...</option>
+                        @foreach(var m in room)
+                        {
+                            <option value=@m.RoomId asp-for="">@m.Adress</option>                  
+                        }
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>Услуга</label>  
+                        <select  class="form-control"  id="service" name="service">
+                            <option value="">...</option>
+                        @foreach(var m in service)
+                        {
+                            <option value=@m.ServicesId asp-for="">@m.Name</option>                  
+                        }
+                        </select>
+                    </div>
+                    <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateStart, htmlAttributes: new {  @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group" id="datetimepicker">
+                        @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                </div>
+            </div>
+                    <br />
+@*                    <div class="form-group">
+                        <input asp-for="DateEnd" type="date" form="datetimepicker" class="form-control"/>
+                        <span asp-validation-for="DateEnd" class="text-danger"></span>
+                          
+                        @Html.LabelFor(m => Model.DateEnd, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(m => Model.DateEnd, new { @class = "Date", id = "txtDateFormat", Name = "selectedDateTime" })                        
+                    </div>
+*@                  
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateEnd, htmlAttributes: new {  @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group" id="datetimepicker">
+                        @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="Descr" class="form-control" placeholder="Примечание"/>
+                        <span asp-validation-for="Descr" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Добавить" class="btn btn-outline-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+        <div>
+        <a asp-action="ReceptionCalendar" class="btn btn-outline-primary">Назад</a>
+        </div>
+
+    </header>
+</body>
+
+@section Scripts {
+    <script>
+    // переопределение валидации на стороне клиента
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+ 
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+    </script>
+
+    <script>
+        $(document).ready(function ()
+        {
+            $("#datetimepicker").datetimepicker(
+                {
+                    defaultDate: '@DateTime.Now',
+                    showTodayButton: true,
+                    format: 'YYYY-MM-DD HH:mm',
+                    showClose: true,
+                    showClear: true,
+                    toolbarPlacement: 'top',
+                    stepping: 15
+                });
+        });
+    </script>
+}
+

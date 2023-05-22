@@ -26,4 +26,10 @@
     <Folder Include="Update\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="DayPilot.Web.Mvc">
+      <HintPath>..\..\..\exem\TutorialMvc5Timesheet.20210819\TutorialMvc5Timesheet\Lib\DayPilot.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

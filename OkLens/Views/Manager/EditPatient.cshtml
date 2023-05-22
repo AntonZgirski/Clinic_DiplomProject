@@ -1,0 +1,93 @@
+﻿@model OkLens.Models.Patient
+
+<body>
+    <header>
+        <p>
+            <h1  class="text-info">Редактировать</h1>
+
+            <hr />
+        </p>        
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="EditPatient">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="PatientId"/>
+                    <div class="form-group">
+                        <input asp-for="Lname" class="form-control"/>
+                        <span asp-validation-for="Lname" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="Fname" class="form-control"/>
+                        <span asp-validation-for="Fname" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="Sname" class="form-control"/>
+                        <span asp-validation-for="Sname" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="DateBirthday" class="control-label"></label>  
+                        <input asp-for="DateBirthday" type="date" class="form-control"/>
+                        <span asp-validation-for="DateBirthday" class="text-danger"></span>      
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="RegAdress" class="form-control"/>
+                        <span asp-validation-for="RegAdress" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="TypeDocument" class="form-control"/>
+                        <span asp-validation-for="TypeDocument" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="NumberDocument" class="form-control"/>
+                        <span asp-validation-for="NumberDocument" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="Gender" class="form-control"/>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="WorkPlace" class="form-control"/>
+                        <span asp-validation-for="WorkPlace" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input asp-for="PhoneNumber" class="form-control"/>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Сохранить" class="btn btn-outline-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+        <div>
+        <a asp-action="PatientList" class="btn btn-outline-primary">Назад</a>
+        </div>
+
+    </header>
+</body>
+
+@section Scripts {
+    <script>
+    // переопределение валидации на стороне клиента
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+ 
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+    </script>
+}

@@ -90,7 +90,46 @@ namespace OkLens.Services
       return _okLensContext.PatientForViews.ToList();
     }
 
+    public PatientForView GetPatientWithGuar(int id)
+    {
+      var pat = _okLensContext.PatientForViews.Where(p => p.PatientId == id).FirstOrDefault();
+
+      if (pat.GuarnatirPatientId != null) 
+      {
+        DateTime dGuar = (DateTime)pat.DateBirthdayGuar;
+        pat.DateBirthdayGuarStr = dGuar.ToString("d");
+      }
+      return pat;
+    }
+
+    public Patient GetPatient(int id)
+    {
+      return _okLensContext.Patients.Where(p => p.PatientId == id).FirstOrDefault();
+    }
+
+    public List<Patient> GetPatients()
+    {
+      return _okLensContext.Patients.ToList();
+    }
     #endregion Patient
+
+    #region Reception
+
+    public List<ReceptionView> GetReceptionsView()
+    {
+      return _okLensContext.ReceptionViews.ToList();
+    }
+
+    public List<PatientForView> GetPatientForReception()
+    {
+      return _okLensContext.PatientForViews.ToList();
+    }
+
+    public List<ListEmployeeForView> GetDoctor()
+    {
+      return _okLensContext.ListEmployeeForViews.Where(p => p.RoleName == "Доктор").ToList();
+    }
+    #endregion Reception
 
   }
 }

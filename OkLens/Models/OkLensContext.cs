@@ -31,6 +31,8 @@ public partial class OkLensContext : DbContext
 
     public virtual DbSet<Reception> Receptions { get; set; }
 
+    public virtual DbSet<ReceptionView> ReceptionViews { get; set; }
+
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<Room> Rooms { get; set; }
@@ -264,11 +266,13 @@ public partial class OkLensContext : DbContext
         {
             entity.ToTable("Reception");
 
-            entity.Property(e => e.ReceptionId)
-                .ValueGeneratedNever()
-                .HasColumnName("ReceptionID");
+            entity.Property(e => e.ReceptionId).HasColumnName("ReceptionID");
             entity.Property(e => e.ContractId).HasColumnName("ContractID");
-            entity.Property(e => e.DateReception).HasColumnType("datetime");
+            entity.Property(e => e.DateEnd).HasColumnType("datetime");
+            entity.Property(e => e.DateStart).HasColumnType("datetime");
+            entity.Property(e => e.Descr)
+                .HasMaxLength(100)
+                .IsUnicode(false);
             entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
             entity.Property(e => e.InspectionId).HasColumnName("InspectionID");
             entity.Property(e => e.PatientId).HasColumnName("PatientID");
@@ -277,33 +281,56 @@ public partial class OkLensContext : DbContext
 
             entity.HasOne(d => d.Contract).WithMany(p => p.Receptions)
                 .HasForeignKey(d => d.ContractId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reception_Contract");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.Receptions)
                 .HasForeignKey(d => d.EmployeeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reception_Employee");
 
             entity.HasOne(d => d.Inspection).WithMany(p => p.Receptions)
                 .HasForeignKey(d => d.InspectionId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reception_Inspection");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Receptions)
                 .HasForeignKey(d => d.PatientId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reception_Patient");
 
             entity.HasOne(d => d.Room).WithMany(p => p.Receptions)
                 .HasForeignKey(d => d.RoomId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reception_Room");
 
             entity.HasOne(d => d.Services).WithMany(p => p.Receptions)
                 .HasForeignKey(d => d.ServicesId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reception_Services");
+        });
+
+        modelBuilder.Entity<ReceptionView>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("ReceptionView");
+
+            entity.Property(e => e.Adress)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.DateEnd).HasColumnType("datetime");
+            entity.Property(e => e.DateStart).HasColumnType("datetime");
+            entity.Property(e => e.Descr)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
+            entity.Property(e => e.Fioemployee)
+                .HasMaxLength(56)
+                .IsUnicode(false)
+                .HasColumnName("FIOEmployee");
+            entity.Property(e => e.Fiopatient)
+                .HasMaxLength(56)
+                .IsUnicode(false)
+                .HasColumnName("FIOPatient");
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.ReceptionId).HasColumnName("ReceptionID");
         });
 
         modelBuilder.Entity<Role>(entity =>

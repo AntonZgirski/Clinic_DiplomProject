@@ -75,3 +75,4 @@ D:\C#\Diplom\OkLens\OkLens\obj\Debug\net7.0\OkLens.pdb
 D:\C#\Diplom\OkLens\OkLens\obj\Debug\net7.0\OkLens.genruntimeconfig.cache
 D:\C#\Diplom\OkLens\OkLens\obj\Debug\net7.0\ref\OkLens.dll
 D:\C#\Diplom\OkLens\OkLens\bin\Debug\net7.0\userid.json
+D:\C#\Diplom\OkLens\OkLens\bin\Debug\net7.0\DayPilot.Web.Mvc.dll

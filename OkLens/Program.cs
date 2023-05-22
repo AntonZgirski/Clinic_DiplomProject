@@ -23,6 +23,7 @@ namespace OkLens
       builder.Services.AddScoped<RegisterServices>();
       builder.Services.AddScoped<AdminServices>();
       builder.Services.AddScoped<ManagerServices>();
+      builder.Services.AddScoped<DoctorServices>();
 
       builder.Services.AddAuthorization(options =>
       {
@@ -47,13 +48,13 @@ namespace OkLens
       app.UseAuthorization();
 
       // для релиза
-      //app.MapControllerRoute(
-      //    name: "default",
-      //    pattern: "{controller=Register}/{action=Register}/{id?}");
-      // для тестирования
       app.MapControllerRoute(
           name: "default",
-          pattern: "{controller=Manager}/{action=PatientList}/{id?}");
+          pattern: "{controller=Register}/{action=Register}/{id?}");
+      // для тестирования
+      //app.MapControllerRoute(
+      //    name: "default",
+      //    pattern: "{controller=Doctor}/{action=ReceptionList}/{id?}");
 
 
       app.Run();

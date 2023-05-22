@@ -49,12 +49,10 @@ namespace OkLens.Controllers
             return RedirectToAction("Employee", "Admin");
           case UsersRoles.Doctor:
             _registerServices.WriteUserId(user.EmployeeId);
-            //return RedirectToAction("Applic", "Employee");
-            return View();
+            return RedirectToAction("ReceptionList", "Doctor");            
           case UsersRoles.Manager:
             _registerServices.WriteUserId(user.EmployeeId);
-            //return RedirectToAction("Applic", "Employee");
-            return View();
+            return RedirectToAction("ReceptionCalendar", "Manager");            
           default:
             ViewBag.ErrorAut = ErrorMessage.ErrorPasswordOrLoginIncorrect;
             return View("Register");
