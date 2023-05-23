@@ -1,1 +1,209 @@
-﻿
+﻿@model OkLens.Models.Inspection
+
+@{
+  ViewData["Title"] = "Приём";  
+}
+
+<p>
+    <h2 class="text-info">@ViewData["Title"]</h2>
+</p>        
+<br/>
+
+<form asp-action="AddInspection">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <textarea asp-for="Anamnesis" class="form-control" placeholder="Анамнез" rows="3"></textarea>
+                        <span asp-validation-for="Anamnesis" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <textarea asp-for="Complaints" class="form-control" placeholder="Жалобы" rows="3"></textarea>
+                        <span asp-validation-for="Complaints" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <hr />
+    <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <input asp-for="TestShobera" class="form-control" placeholder="Тест Шобера"/>
+                        <span asp-validation-for="TestShobera" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="PhoriaDist" class="form-control" placeholder="Фория вдаль"/>
+                        <span asp-validation-for="PhoriaDist" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="Orthophoria" class="form-control" placeholder="Ортофория вдаль"/>
+                        <span asp-validation-for="Orthophoria" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="Zao" class="form-control" placeholder="ЗАО"/>
+                        <span asp-validation-for="Zao" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <input asp-for="LeadingEye" class="form-control" placeholder="Ведущий глаз"/>
+                        <span asp-validation-for="LeadingEye" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="PhoriaUp" class="form-control" placeholder="Фория вблизи"/>
+                        <span asp-validation-for="PhoriaUp" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="Stereopsis" class="form-control" placeholder="Стереопсис"/>
+                        <span asp-validation-for="Stereopsis" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="Oaa" class="form-control" placeholder="ОАА"/>
+                        <span asp-validation-for="Oaa" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <h1>БМС</h1>
+    <br />
+    <br />
+    <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <textarea asp-for="Eyelids" class="form-control" placeholder="Веки" rows="3"></textarea>
+                        <span asp-validation-for="Eyelids" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <textarea asp-for="Conjuctiva" class="form-control" placeholder="Конъюктива" rows="3"></textarea>
+                        <span asp-validation-for="Conjuctiva" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <textarea asp-for="Cornea" class="form-control" placeholder="Роговица" rows="3"></textarea>
+                        <span asp-validation-for="Cornea" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <input asp-for="FrontCamera" class="form-control" placeholder="Передняя камера"/>
+                        <span asp-validation-for="FrontCamera" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="Pupil" class="form-control" placeholder="Зрачок"/>
+                        <span asp-validation-for="Pupil" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="VitrousBody" class="form-control" placeholder="Стекловидное тело"/>
+                        <span asp-validation-for="VitrousBody" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <input asp-for="Iris" class="form-control" placeholder="Радужка"/>
+                        <span asp-validation-for="Iris" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">                            
+                        <input asp-for="Lens" class="form-control" placeholder="Хрусталик"/>
+                        <span asp-validation-for="Lens" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <textarea asp-for="CommentBms" class="form-control" placeholder="Комментарий" rows="3"></textarea>
+                        <span asp-validation-for="CommentBms" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <hr />
+    <div class="col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">                            
+                        <textarea asp-for="Diagnosis" class="form-control" placeholder="Диагноз" rows="3"></textarea>
+                        <span asp-validation-for="Diagnosis" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <textarea asp-for="Recommend" class="form-control" placeholder="Рекомендации" rows="3"></textarea>
+                        <span asp-validation-for="Recommend" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Соранить" class="btn btn-outline-primary" />
+    </div>
+    <br />
+    <div>
+        <a asp-action="ReceptionList" class="btn btn-outline-primary">Назад</a>
+    </div>
+</form> 
+
+@section Scripts {
+    <script>
+    // переопределение валидации на стороне клиента
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    }
+ 
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    }
+    </script>
+}

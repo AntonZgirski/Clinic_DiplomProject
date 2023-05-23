@@ -106,9 +106,72 @@ public partial class OkLensContext : DbContext
             entity.ToTable("Inspection");
 
             entity.Property(e => e.InspectionId).HasColumnName("InspectionID");
-            entity.Property(e => e.Compliant)
-                .HasMaxLength(100)
+            entity.Property(e => e.Anamnesis)
+                .HasMaxLength(200)
                 .IsUnicode(false);
+            entity.Property(e => e.CommentBms)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("CommentBMS");
+            entity.Property(e => e.Complaints)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.Conjuctiva)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Cornea)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Diagnosis)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.Eyelids)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.FrontCamera)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Iris)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.LeadingEye)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Lens)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Oaa)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("OAA");
+            entity.Property(e => e.Orthophoria)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.PhoriaDist)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.PhoriaUp)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Pupil)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Recommend)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            entity.Property(e => e.Stereopsis)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.TestShobera)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.VitrousBody)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Zao)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("ZAO");
         });
 
         modelBuilder.Entity<ListEmployeeForView>(entity =>

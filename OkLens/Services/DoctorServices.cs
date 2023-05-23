@@ -35,6 +35,11 @@ namespace OkLens.Services
       return _okLensContext.ReceptionViews.Where(p => p.EmployeeId == id).ToList();
     }
 
+    public Reception GetReception(int id)
+    {
+      return _okLensContext.Receptions.Where(p => p.ReceptionId == id).FirstOrDefault();
+    }
+
     #endregion Reception
   }
 }

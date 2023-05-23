@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OkLens.Models;
 using OkLens.Services;
 
 namespace OkLens.Controllers
@@ -20,9 +21,9 @@ namespace OkLens.Controllers
     {
       return RedirectToAction("Register", "Register");
     }
-    
+
     public ActionResult ReceptionList()
-    {      
+    {
       return View(_doctorServices.GetReceptionsView(_registerServices.GetUserId()));
     }
 
@@ -30,6 +31,26 @@ namespace OkLens.Controllers
     public ActionResult AddInspection()
     {
       return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult AddInspection([Bind("Anamnesis,Complaints,TestShobera,LeadingEye,PhoriaDist," +
+                                            "PhoriaUp,Orthophoria,Zao,Oaa,Stereopsis,Eyelids,Conjuctiva," +
+                                            "Cornea,FrontCamera,Iris,Pupil,Lens,VitrousBody,CommentBms," +
+                                            "Diagnosis,Recommend")] Inspection inspection)
+    {
+      if (ModelState.IsValid)
+      {              
+        _doctorServices.AddObj(inspection);
+        
+        var reception = _doctorServices.GetReception(Int32.Parse(RouteData.Values["id"].ToString()));
+        reception.InspectionId = inspection.InspectionId;
+        _doctorServices.UpdateObj(reception);
+        
+        return RedirectToAction("ReceptionList");
+      }
+      return View(inspection);
     }
   }
 }

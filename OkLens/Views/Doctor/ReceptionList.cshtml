@@ -3,7 +3,7 @@
   ViewData["Title"] = "Список приёмов"; 
   ViewData["Role"] = "Doctor";
   ViewData["IsRegister"] = "1";
-  Layout = "~/Views/Shared/_Layout.cshtml";
+  Layout = "~/Views/Shared/_Layout.cshtml";  
 }
 
 
@@ -43,10 +43,10 @@
                 @Html.DisplayFor(modelItem => item.DateEnd)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descr)И
+                @Html.DisplayFor(modelItem => item.Descr)
             </td>
             <td>
-            <a asp-action="AddInspection" asp-route-id="@item.ReceptionId">Начать приём</a> 
+            <a asp-action="AddInspection" asp-route-id ="@item.ReceptionId">Начать приём</a> 
             </td>
         </tr>
     } 
@@ -62,10 +62,3 @@
     </div>
 </div>
 }
-@*        <br />
-    <div class="col-2">
-        <form asp-controller="Manager" asp-action="AddReception" method="get">
-            <button type="submit" class="btn btn-outline-primary" formmethod="get">Записаться</button>
-        </form>
-    </div>
-*@

@@ -48,13 +48,13 @@ namespace OkLens
       app.UseAuthorization();
 
       // для релиза
-      app.MapControllerRoute(
-          name: "default",
-          pattern: "{controller=Register}/{action=Register}/{id?}");
-      // для тестирования
       //app.MapControllerRoute(
       //    name: "default",
-      //    pattern: "{controller=Doctor}/{action=ReceptionList}/{id?}");
+      //    pattern: "{controller=Register}/{action=Register}/{id?}");
+      // для тестирования
+      app.MapControllerRoute(
+          name: "default",
+          pattern: "{controller=Doctor}/{action=ReceptionList}/{id?}");
 
 
       app.Run();
