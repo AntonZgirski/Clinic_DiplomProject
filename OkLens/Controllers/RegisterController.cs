@@ -11,6 +11,8 @@ namespace OkLens.Controllers
     private readonly ILogger<RegisterController> _logger;
     private readonly RegisterServices _registerServices;       
 
+    public bool IsRegistered { get; private set; }
+
     public RegisterController(ILogger<RegisterController> logger, RegisterServices registerServices)
     {
       _logger = logger;
@@ -20,6 +22,8 @@ namespace OkLens.Controllers
     [HttpGet]
     public IActionResult Register()
     {
+      //ViewBag.IsRegistered = "0";
+      //ViewData["IsRegister"] = "0";
       return View();
     }
 
@@ -46,12 +50,21 @@ namespace OkLens.Controllers
         {
           case UsersRoles.Administrator:
             _registerServices.WriteUserId(user.EmployeeId);
+            ViewBag.IsRegistered = "1";
+            ViewData["IsRegister"] = "1";
+            ViewData["Exit"] = "Выход";
             return RedirectToAction("Employee", "Admin");
           case UsersRoles.Doctor:
             _registerServices.WriteUserId(user.EmployeeId);
+            ViewBag.IsRegistered = "1";
+            ViewData["IsRegister"] = "1";
+            ViewData["Exit"] = "Выход";
             return RedirectToAction("ReceptionList", "Doctor");            
           case UsersRoles.Manager:
             _registerServices.WriteUserId(user.EmployeeId);
+            ViewBag.IsRegistered = "1";
+            ViewData["IsRegister"] = "1";
+            ViewData["Exit"] = "Выход";
             return RedirectToAction("ReceptionCalendar", "Manager");            
           default:
             ViewBag.ErrorAut = ErrorMessage.ErrorPasswordOrLoginIncorrect;

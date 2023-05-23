@@ -31,8 +31,7 @@ namespace OkLens.Services
     public bool CheckDublicateLoginEmployee(string login)
     {
       var employee = _okLensContext.Employees.Where(p => p.Login == login).FirstOrDefault();
-      if (employee == null) return false;
-      else return true;
+      return employee != null;
     }
 
     public Employee GetEmployee(int id)

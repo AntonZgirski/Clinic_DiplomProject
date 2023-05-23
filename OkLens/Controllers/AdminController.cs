@@ -18,6 +18,11 @@ namespace OkLens.Controllers
       _adminServices = adminServices;
     }
 
+    public IActionResult ExitApp()
+    {
+      return RedirectToAction("Register", "Register");
+    }
+
     #region Employee
 
     [HttpGet]

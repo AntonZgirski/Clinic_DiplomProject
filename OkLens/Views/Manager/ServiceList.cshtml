@@ -1,82 +1,51 @@
 ﻿@model List<Service>
 @{
   ViewData["Title"] = "Услуги"; 
+  ViewData["Role"] = "Manager";
+  ViewData["IsRegister"] = "1";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">        
-            <div class="container-fluid">                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="ReceptionCalendar">Запись на приём</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="PatientList">Пациенты</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="RoomList">Кабинеты</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="HowKnowList">Как о нас узнали</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="ServiceList">Услуги</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="StockList">Склад</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <p>
-            <h2 class="text-info">@ViewData["Title"]</h2>
-        </p>
+<p>
+    <h2 class="text-info">@ViewData["Title"]</h2>
+</p>
 
-    <table class="table"> 
-        <tr>
-            <th>Наименование</th>
-            <th>Стоимость</th>
-        </tr>
-      @foreach (var item in Model)
-      {
-              <tr>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                  </td>
-                  <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                  </td>
-                  <td>
-                    <a asp-action="EditService" asp-route-id="@item.ServicesId">Изменить</a> |
-                    <a asp-action="DeleteService" asp-route-id="@item.ServicesId">Удалить</a>
-                  </td>
-              </tr>
-      } 
-    </table>
-    <br/>
-    @if (ViewBag.Error != null)
+<table class="table"> 
+    <tr>
+        <th>Наименование</th>
+        <th>Стоимость</th>
+    </tr>
+    @foreach (var item in Model)
     {
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-warning" role="alert">
-                @ViewBag.Error
-            </div>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+            <a asp-action="EditService" asp-route-id="@item.ServicesId">Изменить</a> |
+            <a asp-action="DeleteService" asp-route-id="@item.ServicesId">Удалить</a>
+            </td>
+        </tr>
+    } 
+</table>
+<br/>
+@if (ViewBag.Error != null)
+{
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            @ViewBag.Error
         </div>
     </div>
-    }
-    <br />
-    <p>
-        <form asp-controller="Manager" asp-action="AddService" method="get">
-            <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить</button>
-        </form>
-    </p>
-    <br />
-    </header>
-</body>
+</div>
+}
+<br />
+<p>
+    <form asp-controller="Manager" asp-action="AddService" method="get">
+        <button type="submit" class="btn btn-outline-primary" formmethod="get">Добавить</button>
+    </form>
+</p>
+<br />

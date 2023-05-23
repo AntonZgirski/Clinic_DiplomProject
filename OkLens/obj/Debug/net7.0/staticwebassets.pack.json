@@ -181,14 +181,6 @@
       "PackagePath": "staticwebassets\\OkLens.bundle.scp.css"
     },
     {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\css\\dochtml.css",
-      "PackagePath": "staticwebassets\\css\\dochtml.css"
-    },
-    {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\css\\fontello-d411042e.css",
-      "PackagePath": "staticwebassets\\css\\fontello-d411042e.css"
-    },
-    {
       "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -197,36 +189,12 @@
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\css\\suggest.css",
-      "PackagePath": "staticwebassets\\css\\suggest.css"
-    },
-    {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\css\\time.css",
-      "PackagePath": "staticwebassets\\css\\time.css"
-    },
-    {
       "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\js\\dochtml.js",
-      "PackagePath": "staticwebassets\\js\\dochtml.js"
-    },
-    {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\js\\jquery.min.js",
-      "PackagePath": "staticwebassets\\js\\jquery.min.js"
-    },
-    {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\js\\newpos.js",
-      "PackagePath": "staticwebassets\\js\\newpos.js"
-    },
-    {
       "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
-    },
-    {
-      "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\js\\ui.datepicker.js",
-      "PackagePath": "staticwebassets\\js\\ui.datepicker.js"
     },
     {
       "Id": "D:\\C#\\Diplom\\OkLens\\OkLens\\wwwroot\\lib\\bootstrap\\LICENSE",

@@ -16,6 +16,11 @@ namespace OkLens.Controllers
       _registerServices = registerServices;
     }
 
+    public IActionResult ExitApp()
+    {
+      return RedirectToAction("Register", "Register");
+    }
+    
     public ActionResult ReceptionList()
     {      
       return View(_doctorServices.GetReceptionsView(_registerServices.GetUserId()));

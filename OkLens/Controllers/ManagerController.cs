@@ -22,6 +22,11 @@ namespace OkLens.Controllers
       _managerServices = managerServices;
     }
 
+    public IActionResult ExitApp()
+    {
+      return RedirectToAction("Register", "Register");
+    }
+
     #region Room
     [HttpGet]
     public IActionResult RoomList()
@@ -77,10 +82,9 @@ namespace OkLens.Controllers
 
     public IActionResult DeleteAct(int id)
     {
-      _managerServices.DeleteObj(_managerServices.GetRoom(id));
+      _managerServices.DeleteObj(_managerServices.GetRoom(id));     
       return RedirectToAction("RoomList");
     }
-
 
     #endregion Room
 
@@ -276,6 +280,7 @@ namespace OkLens.Controllers
         _managerServices.AddObj(patient);
         return RedirectToAction("PatientList");
       }
+      ViewData["HowKnowList"] = _managerServices.GetHowKnowList();
       return View(patient);
     }
 
@@ -372,12 +377,18 @@ namespace OkLens.Controllers
     public IActionResult DeletePatientAction(int id)
     {
       var patient = _managerServices.GetPatient(id);
-      
+      var reception = _managerServices.GetReception(id);
+      if(reception != null)
+      {
+        ViewBag.Error = ErrorMessage.ErrorDeletePatient;        
+        return View("PatientList", _managerServices.GetPatientViewList());
+      }
       // если у пациента нет поручителя, проверяем является ли он сам поручителем и удаляем его и пациента у которого он является поручителем
       if (patient.GuarnatirPatientId == null)
       {
         var patients = _managerServices.GetPatients();
         var patientMain = patients.Where(p => p.GuarnatirPatientId == id).FirstOrDefault();
+
         if (patientMain != null) _managerServices.DeleteObj(patientMain);
       }
 

@@ -2,71 +2,67 @@
 @{
   ViewData["Title"] = "Новый сотрудник";
 }
-<body>
-    <header>
-        <p>
-            <h2 class="text-info">@ViewData["Title"]</h2>
-        </p>        
+<p>
+    <h2 class="text-info">@ViewData["Title"]</h2>
+</p>        
 
-        <form asp-controller="Admin" asp-action="SaveEmployee" method="post">
-        <div class="container">
-            <div class="row">
-                <div class="col-8">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" placeholder="Фамилия" name="lname">
-                        <label for="floatingInput">Фамилия</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" placeholder="Имя" name="fname">
-                        <label for="floatingInput">Имя</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" placeholder="Отчество" name="sname">
-                        <label for="floatingInput">Отчество</label>
-                    </div>
-                    <div class="form-floating mb-3">                    
-                        <input type="date" class="form-control" name="datebir"/>
-                        <label for="floatingInput">Дата рождения</label>                        
-                    </div>
-                    <p>                    
-                    <label>Роль сотрудника</label>                    
-                    <select class="form-control" id="role" name="role" required="required">
-                        <option value="">...</option>
-                    @foreach(var m in Model)
-                    {
-                        <option value=@m.RoleId>@m.RoleName</option>                  
-                    }
-                    </select>
-                    </p>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" placeholder="Категория" name="category">
-                        <label for="floatingInput">Категория</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" placeholder="Логин" name="login">
-                        <label for="floatingInput">Логин</label>
-                    </div>
-                </div>
+<form asp-controller="Admin" asp-action="SaveEmployee" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Фамилия" name="lname">
+                <label for="floatingInput">Фамилия</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Имя" name="fname">
+                <label for="floatingInput">Имя</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Отчество" name="sname">
+                <label for="floatingInput">Отчество</label>
+            </div>
+            <div class="form-floating mb-3">                    
+                <input type="date" class="form-control" name="datebir"/>
+                <label for="floatingInput">Дата рождения</label>                        
+            </div>
+            <p>                    
+            <label>Роль сотрудника</label>                    
+            <select class="form-control" id="role" name="role" required="required">
+                <option value="">...</option>
+            @foreach(var m in Model)
+            {
+                <option value=@m.RoleId>@m.RoleName</option>                  
+            }
+            </select>
+            </p>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Категория" name="category">
+                <label for="floatingInput">Категория</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Логин" name="login">
+                <label for="floatingInput">Логин</label>
             </div>
         </div>
-        @if (ViewBag.Error != null)
-        {
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-warning" role="alert">
-                    @ViewBag.Error
-                </div>
-            </div>
-        </div>
-        }        
-
-        <br /> 
-        <button type="submit" class="btn btn-outline-primary">Добавить</button>
-
-        </form>
-    <br />
-    <div>
-    <a asp-action="Employee" class="btn btn-outline-primary">Назад</a>
     </div>
-    </header>
-</body>
+</div>
+@if (ViewBag.Error != null)
+{
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            @ViewBag.Error
+        </div>
+    </div>
+</div>
+}        
+
+<br /> 
+<button type="submit" class="btn btn-outline-primary">Добавить</button>
+
+</form>
+<br />
+<div>
+<a asp-action="Employee" class="btn btn-outline-primary">Назад</a>
+</div>

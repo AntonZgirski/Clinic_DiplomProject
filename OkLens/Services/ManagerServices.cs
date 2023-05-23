@@ -129,6 +129,12 @@ namespace OkLens.Services
     {
       return _okLensContext.ListEmployeeForViews.Where(p => p.RoleName == "Доктор").ToList();
     }
+
+    public Reception GetReception(int id)
+    {
+      return _okLensContext.Receptions.Where(p => p.PatientId == id).FirstOrDefault();
+    }
+
     #endregion Reception
 
   }

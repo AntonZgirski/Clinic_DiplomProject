@@ -7,6 +7,8 @@
         public const string ErrorPasswordOrLoginIncorrect = "Неверный логин или пароль!";
         public const string MesPasswordSaveTryAgain = "Пароль сохранен, повторите вход.";
         public const string SuccesReserPassword = "Пароль сброшен.";
+        public const string ErrorDeletePatient = "Пациент записан на прием, удаление не возможно!";
+
 
         public static string SuccesDeleteEmployee(string fio)
         {

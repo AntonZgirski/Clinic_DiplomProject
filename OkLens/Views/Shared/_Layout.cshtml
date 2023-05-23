@@ -12,25 +12,80 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OkLens</a>*@
-                <class="navbar-brand">Клиника</class> 
-@*                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <class="navbar-brand">Клиника</class>
+                @if (ViewBag.IsRegister == "1")
+                {
+                    
+                        <a class="a-right" asp-action="ExitApp">Выход</a>
+                    
+                }                
+            </div>
+        </nav>
+        @if (ViewBag.Role == "Admin")
+        {
+            <div class="container-fluid">                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-*@@*                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Employee">Сотрудники</a>
                         </li>
                     </ul>
                 </div>
-*@            </div>
-        </nav>
-    </header>
+            </div>          
+        }
+        @if(ViewBag.Role == "Manager")
+        {
+        <div class="container-fluid">                
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="ReceptionCalendar">Запись на приём</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="PatientList">Пациенты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="RoomList">Кабинеты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="HowKnowList">Как о нас узнали</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="ServiceList">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Manager" asp-action="StockList">Склад</a>
+                    </li>
+                </ul>
+            </div>
+        </div>      
+        }
+        @if(ViewBag.Role == "Doctor")
+        {
+            <div class="container-fluid">                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Doctor" asp-action="ReceptionList">Список приёмов</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+      
+        }
+  </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

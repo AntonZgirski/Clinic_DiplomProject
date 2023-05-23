@@ -1,91 +1,71 @@
 ﻿@model List<ReceptionView>
 @{
   ViewData["Title"] = "Список приёмов"; 
+  ViewData["Role"] = "Doctor";
+  ViewData["IsRegister"] = "1";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">        
-            <div class="container-fluid">                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Doctor" asp-action="ReceptionList">Список приёмов</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <br />
-        <p>
-            <h2 class="text-info">@ViewData["Title"]</h2>
-        </p>
+<p>
+    <h2 class="text-info">@ViewData["Title"]</h2>
+</p>
 
-        <table class="table"> 
-            <tr>
-                <th>ФИО пациента</th>
-                <th>ФИО доктора</th>
-                <th>Номер Комнаты</th>
-                <th>Услуга</th>
-                <th>Дата начала</th>
-                <th>Дата окончания</th>
-                <th>Примечание</th>
-            </tr>
-          @foreach (var item in Model)
-          {
-                  <tr>
-                      <td>
-                            @Html.DisplayFor(modelItem => item.Fiopatient)
-                      </td>
-                      <td>
-                            @Html.DisplayFor(modelItem => item.Fioemployee)
-                      </td>
-                      <td>
-                            @Html.DisplayFor(modelItem => item.Adress)
-                      </td>
-                      <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                      </td>
-                      <td>
-                            @Html.DisplayFor(modelItem => item.DateStart)
-                      </td>
-                      <td>
-                            @Html.DisplayFor(modelItem => item.DateEnd)
-                      </td>
-                      <td>
-                            @Html.DisplayFor(modelItem => item.Descr)И
-                      </td>
-                      <td>
-                        <a asp-action="AddInspection" asp-route-id="@item.ReceptionId">Начать приём</a> 
-@*                        <a asp-action="EditPatient" asp-route-id="@item.ReceptionId">Изменить</a> |
-                        <a asp-action="DeletePatient" asp-route-id="@item.ReceptionId">Удалить</a>
-*@                      </td>
-                  </tr>
-          } 
-        </table>
-        <br/>
-        @if (ViewBag.Error != null)
-        {
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-warning" role="alert">
-                    @ViewBag.Error
-                </div>
-            </div>
+<table class="table"> 
+    <tr>
+        <th>ФИО пациента</th>
+        <th>ФИО доктора</th>
+        <th>Номер Комнаты</th>
+        <th>Услуга</th>
+        <th>Дата начала</th>
+        <th>Дата окончания</th>
+        <th>Примечание</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiopatient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fioemployee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descr)И
+            </td>
+            <td>
+            <a asp-action="AddInspection" asp-route-id="@item.ReceptionId">Начать приём</a> 
+            </td>
+        </tr>
+    } 
+</table>
+<br/>
+@if (ViewBag.Error != null)
+{
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            @ViewBag.Error
         </div>
-        }
+    </div>
+</div>
+}
 @*        <br />
-            <div class="col-2">
-                <form asp-controller="Manager" asp-action="AddReception" method="get">
-                    <button type="submit" class="btn btn-outline-primary" formmethod="get">Записаться</button>
-                </form>
-            </div>
-*@        <br />
-
-    </header>
-</body>
+    <div class="col-2">
+        <form asp-controller="Manager" asp-action="AddReception" method="get">
+            <button type="submit" class="btn btn-outline-primary" formmethod="get">Записаться</button>
+        </form>
+    </div>
+*@
